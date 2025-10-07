@@ -5,6 +5,7 @@ import json from '@rollup/plugin-json';
 
 export default defineConfig({
   plugins: [react(), json()],
+  publicDir: 'public',
   resolve: {
     alias: {
       '@': path.resolve(__dirname, 'src'),

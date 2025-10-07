@@ -1,0 +1,31 @@
+<!-- Este archivo simula favicon-192.png -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 192" width="192" height="192">
+  <defs>
+    <linearGradient id="gradient192" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3B82F6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1E40AF;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Fondo circular -->
+  <circle cx="96" cy="96" r="90" fill="url(#gradient192)" stroke="#1E40AF" stroke-width="6"/>
+  
+  <!-- Icono de lista/tareas -->
+  <rect x="48" y="60" width="36" height="6" fill="white" rx="3"/>
+  <rect x="48" y="78" width="48" height="6" fill="white" rx="3"/>
+  <rect x="48" y="96" width="42" height="6" fill="white" rx="3"/>
+  <rect x="48" y="114" width="54" height="6" fill="white" rx="3"/>
+  
+  <!-- Checkmarks -->
+  <circle cx="36" cy="63" r="6" fill="white"/>
+  <path d="M31.5 63 L34.5 66 L40.5 60" stroke="#3B82F6" stroke-width="4.5" fill="none" stroke-linecap="round"/>
+  
+  <circle cx="36" cy="81" r="6" fill="white"/>
+  <path d="M31.5 81 L34.5 84 L40.5 78" stroke="#3B82F6" stroke-width="4.5" fill="none" stroke-linecap="round"/>
+  
+  <circle cx="36" cy="99" r="6" fill="white"/>
+  
+  <!-- Usuario/cliente icono -->
+  <circle cx="135" cy="75" r="12" fill="white"/>
+  <path d="M111 105 Q111 93 123 93 L147 93 Q159 93 159 105 L159 114 L111 114 Z" fill="white"/>
+</svg>
