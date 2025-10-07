@@ -4,6 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Calendar, User } from "lucide-react";
+import { formatDateForDisplay } from "@/utils/dateUtils";
 
 export default function FiltrosCobros({ 
   fechaDesde, 
@@ -31,6 +32,11 @@ export default function FiltrosCobros({
               onChange={(e) => onFechaDesdeChange(e.target.value)}
               className="h-11 border-slate-200 focus:border-blue-400 focus:ring-blue-400"
             />
+            {fechaDesde && (
+              <p className="text-xs text-slate-500">
+                Desde: {formatDateForDisplay(fechaDesde)}
+              </p>
+            )}
           </div>
 
           <div className="space-y-2">
@@ -45,6 +51,11 @@ export default function FiltrosCobros({
               onChange={(e) => onFechaHastaChange(e.target.value)}
               className="h-11 border-slate-200 focus:border-blue-400 focus:ring-blue-400"
             />
+            {fechaHasta && (
+              <p className="text-xs text-slate-500">
+                Hasta: {formatDateForDisplay(fechaHasta)}
+              </p>
+            )}
           </div>
 
           <div className="space-y-2">

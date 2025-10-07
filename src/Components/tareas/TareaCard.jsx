@@ -6,6 +6,7 @@ import { Edit, AlertCircle, Trash2 } from "lucide-react";
 import { motion } from "framer-motion";
 import { format, differenceInDays } from "date-fns";
 import { es } from "date-fns/locale";
+import { formatDateForDisplay } from "@/utils/dateUtils";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -190,12 +191,12 @@ export default function TareaCard({ tarea, cliente, onEdit, onEstadoChange, onDe
               <div>
                 {tarea.fecha_inicio && (
                   <p className="text-xs text-slate-500">
-                    Inicio: {format(new Date(tarea.fecha_inicio), "d MMM yyyy", { locale: es })}
+                    Inicio: {formatDateForDisplay(tarea.fecha_inicio)}
                   </p>
                 )}
                 {tarea.estado === 'cobrada' && tarea.fecha_cobro && (
                   <p className="text-xs text-emerald-600 font-medium">
-                    Cobrado: {format(new Date(tarea.fecha_cobro), "d MMM yyyy", { locale: es })}
+                    Cobrado: {formatDateForDisplay(tarea.fecha_cobro)}
                   </p>
                 )}
                 {ultimaActualizacion && tarea.estado !== 'cobrada' && (

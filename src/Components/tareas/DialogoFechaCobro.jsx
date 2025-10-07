@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { formatDateForInput, formatDateForDisplay, getCurrentDateForInput } from "@/utils/dateUtils";
 import {
   Dialog,
   DialogContent,
@@ -13,7 +14,7 @@ import {
 
 export default function DialogoFechaCobro({ open, onOpenChange, onConfirm, tarea }) {
   const [fechaCobro, setFechaCobro] = useState(
-    tarea?.fecha_cobro || new Date().toISOString().split('T')[0]
+    formatDateForInput(tarea?.fecha_cobro) || getCurrentDateForInput()
   );
 
   const handleConfirm = () => {
@@ -40,6 +41,11 @@ export default function DialogoFechaCobro({ open, onOpenChange, onConfirm, tarea
               onChange={(e) => setFechaCobro(e.target.value)}
               className="h-11"
             />
+            {fechaCobro && (
+              <p className="text-xs text-slate-500">
+                Fecha seleccionada: {formatDateForDisplay(fechaCobro)}
+              </p>
+            )}
           </div>
           <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
             <p className="text-sm text-blue-800">

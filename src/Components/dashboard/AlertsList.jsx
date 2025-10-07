@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { differenceInDays, format } from "date-fns";
 import { es } from "date-fns/locale";
 import { motion, AnimatePresence } from "framer-motion";
+import { formatDateForDisplay } from "@/utils/dateUtils";
 import { User } from "@/entities/User";
 
 export default function AlertsList({ tareas, clientes }) {
@@ -90,7 +91,7 @@ export default function AlertsList({ tareas, clientes }) {
                     </div>
                     <div className="flex items-center gap-2 text-xs text-slate-500">
                       <Clock className="w-3 h-3" />
-                      Última actualización: {format(new Date(ultimaActualizacion), "d 'de' MMMM", { locale: es })}
+                      Última actualización: {formatDateForDisplay(ultimaActualizacion)}
                     </div>
                   </motion.div>
                 );

@@ -5,6 +5,7 @@ import { Calendar, User, FileText, DollarSign } from "lucide-react";
 import { motion } from "framer-motion";
 import { format } from "date-fns";
 import { es } from "date-fns/locale";
+import { formatDateForDisplay } from "@/utils/dateUtils";
 
 export default function CobroCard({ tarea, cliente }) {
   return (
@@ -48,7 +49,7 @@ export default function CobroCard({ tarea, cliente }) {
                 <span className="text-xs font-medium">Fecha de Cobro</span>
               </div>
               <p className="text-sm font-semibold text-slate-900">
-                {tarea.fecha_cobro ? format(new Date(tarea.fecha_cobro), "d 'de' MMMM, yyyy", { locale: es }) : 'No especificada'}
+                {tarea.fecha_cobro ? formatDateForDisplay(tarea.fecha_cobro) : 'No especificada'}
               </p>
             </div>
             <div className="text-right">
@@ -65,7 +66,7 @@ export default function CobroCard({ tarea, cliente }) {
           {tarea.fecha_inicio && (
             <div className="mt-3 pt-3 border-t border-slate-100">
               <p className="text-xs text-slate-400">
-                Iniciado: {format(new Date(tarea.fecha_inicio), "d 'de' MMMM, yyyy", { locale: es })}
+                Iniciado: {formatDateForDisplay(tarea.fecha_inicio)}
               </p>
             </div>
           )}

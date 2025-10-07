@@ -7,9 +7,11 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { X } from "lucide-react";
 import { motion } from "framer-motion";
 import { Cliente } from "@/entities/Cliente";
+import { formatDateForInput, formatDateForDisplay, getCurrentDateForInput } from "@/utils/dateUtils";
 
 export default function TareaForm({ tarea, onSubmit, onCancel }) {
   const [clientes, setClientes] = useState([]);
+  const [selectedCliente, setSelectedCliente] = useState(null);
   const [formData, setFormData] = useState(tarea || {
     cliente_id: '',
     titulo: '',
@@ -26,6 +28,14 @@ export default function TareaForm({ tarea, onSubmit, onCancel }) {
     loadClientes();
   }, []);
 
+  useEffect(() => {
+    // Cuando se carga una tarea existente, encontrar el cliente seleccionado
+    if (tarea && tarea.cliente_id && clientes.length > 0) {
+      const cliente = clientes.find(c => c.id === tarea.cliente_id);
+      setSelectedCliente(cliente);
+    }
+  }, [tarea, clientes]);
+
   const loadClientes = async () => {
     const data = await Cliente.list();
     setClientes(data);
@@ -41,6 +51,12 @@ export default function TareaForm({ tarea, onSubmit, onCancel }) {
 
   const handleChange = (field, value) => {
     setFormData(prev => ({ ...prev, [field]: value }));
+  };
+
+  const handleClienteChange = (clienteId) => {
+    const cliente = clientes.find(c => c.id === clienteId);
+    setSelectedCliente(cliente);
+    handleChange('cliente_id', clienteId);
   };
 
   return (
@@ -69,11 +85,17 @@ export default function TareaForm({ tarea, onSubmit, onCancel }) {
             <Label htmlFor="cliente_id">Cliente *</Label>
             <Select
               value={formData.cliente_id}
-              onValueChange={(value) => handleChange('cliente_id', value)}
+              onValueChange={handleClienteChange}
               required
             >
               <SelectTrigger>
-                <SelectValue placeholder="Selecciona un cliente" />
+                <SelectValue placeholder="Selecciona un cliente">
+                  {selectedCliente ? (
+                    <span>{selectedCliente.nombre_completo} {selectedCliente.empresa ? `- ${selectedCliente.empresa}` : ''}</span>
+                  ) : (
+                    "Selecciona un cliente"
+                  )}
+                </SelectValue>
               </SelectTrigger>
               <SelectContent>
                 {clientes.map(cliente => (
@@ -143,9 +165,14 @@ export default function TareaForm({ tarea, onSubmit, onCancel }) {
               <Input
                 id="fecha_inicio"
                 type="date"
-                value={formData.fecha_inicio}
+                value={formatDateForInput(formData.fecha_inicio)}
                 onChange={(e) => handleChange('fecha_inicio', e.target.value)}
               />
+              {formData.fecha_inicio && (
+                <p className="text-xs text-slate-500">
+                  Fecha: {formatDateForDisplay(formData.fecha_inicio)}
+                </p>
+              )}
             </div>
 
             <div className="space-y-2">
@@ -153,9 +180,14 @@ export default function TareaForm({ tarea, onSubmit, onCancel }) {
               <Input
                 id="fecha_finalizacion"
                 type="date"
-                value={formData.fecha_finalizacion}
+                value={formatDateForInput(formData.fecha_finalizacion)}
                 onChange={(e) => handleChange('fecha_finalizacion', e.target.value)}
               />
+              {formData.fecha_finalizacion && (
+                <p className="text-xs text-slate-500">
+                  Fecha: {formatDateForDisplay(formData.fecha_finalizacion)}
+                </p>
+              )}
             </div>
           </div>
 
@@ -165,10 +197,15 @@ export default function TareaForm({ tarea, onSubmit, onCancel }) {
               <Input
                 id="fecha_cobro"
                 type="date"
-                value={formData.fecha_cobro}
+                value={formatDateForInput(formData.fecha_cobro)}
                 onChange={(e) => handleChange('fecha_cobro', e.target.value)}
                 required
               />
+              {formData.fecha_cobro && (
+                <p className="text-xs text-slate-500">
+                  Fecha de cobro: {formatDateForDisplay(formData.fecha_cobro)}
+                </p>
+              )}
               <p className="text-xs text-slate-500">
                 Esta fecha se usará para filtrar y ordenar en la sección de Cobros
               </p>

@@ -1,19 +1,13 @@
-# Configuración de MIME types
-AddType application/javascript .js
-AddType text/css .css
-AddType application/json .json
-AddType image/svg+xml .svg
-
 # Configuración para SPA (Single Page Application)
 <IfModule mod_rewrite.c>
   RewriteEngine On
   
   # Manejar rutas del cliente (React Router)
-  RewriteBase /CRM-TAREAS/
+  RewriteBase /
   RewriteRule ^index\.html$ - [L]
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d
-  RewriteRule . /CRM-TAREAS/index.html [L]
+  RewriteRule . /index.html [L]
 </IfModule>
 
 # Configuración de caché
