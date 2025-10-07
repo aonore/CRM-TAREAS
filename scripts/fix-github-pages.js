@@ -34,6 +34,10 @@ function fixIndexHtml() {
   content = content.replace(/href="\.\/favicon-/g, `href="${BASE_PATH}/favicon-`);
   content = content.replace(/href="favicon-/g, `href="${BASE_PATH}/favicon-`);
   
+  // Optimizar modulepreload para evitar warnings
+  content = content.replace(/rel="modulepreload" crossorigin href="/g, `rel="modulepreload" crossorigin href="`);
+  content = content.replace(/rel="modulepreload" crossorigin href="([^"]+)">$/gm, `rel="modulepreload" crossorigin href="$1" as="script">`);
+  
   fs.writeFileSync(indexPath, content);
   console.log('✅ index.html corregido');
 }
