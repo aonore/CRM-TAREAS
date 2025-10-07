@@ -8,8 +8,11 @@ import Configuracion from '@/Pages/Configuracion';
 import ClienteDetalle from '@/Pages/ClienteDetalle';
 
 function App() {
+  // Detectar si estamos en GitHub Pages o desarrollo local
+  const basename = import.meta.env.PROD ? '/CRM-TAREAS' : '';
+  
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={basename}>
       <Layout>
         <Routes>
           <Route path="/" element={<Dashboard />} />

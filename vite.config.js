@@ -4,6 +4,7 @@ import path from 'path';
 import json from '@rollup/plugin-json';
 
 export default defineConfig({
+  base: '/CRM-TAREAS/',
   plugins: [react(), json()],
   publicDir: 'public',
   resolve: {
