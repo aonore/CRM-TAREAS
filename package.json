@@ -4,7 +4,10 @@
   "description": "CRM Gestoría Romero",
   "scripts": {
     "dev": "vite",
-    "build": "vite build"
+    "build": "vite build",
+    "preview": "vite preview",
+    "build:gh-pages": "vite build && node scripts/fix-github-pages.js",
+    "deploy": "npm run build:gh-pages"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.14",

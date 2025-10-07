@@ -2,24 +2,24 @@
   "name": "CRM Tareas",
   "short_name": "CRM",
   "description": "Sistema CRM para gestión de clientes, tareas y cobros",
-  "start_url": "./",
-  "scope": "./",
+  "start_url": "/CRM-TAREAS/",
+  "scope": "/CRM-TAREAS/",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#3B82F6",
   "icons": [
     {
-      "src": "./favicon.svg",
+      "src": "/CRM-TAREAS/favicon.svg",
       "sizes": "any",
       "type": "image/svg+xml"
     },
     {
-      "src": "./favicon-192.png",
+      "src": "/CRM-TAREAS/favicon-192.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "./favicon-512.png",
+      "src": "/CRM-TAREAS/favicon-512.png",
       "sizes": "512x512",
       "type": "image/png"
     }
